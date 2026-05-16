@@ -9,6 +9,7 @@ Phase 1: Local FastAPI service
 ## Service Endpoints
 
 GET /health
+
 GET /metadata
 
 ## Planned Security Work
