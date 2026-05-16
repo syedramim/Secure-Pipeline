@@ -1,0 +1,39 @@
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+
+app = FastAPI(
+    title="Service Health Api",
+    description="API for checking the health of the service.",
+    version="0.0.1",
+)
+
+@app.get("/")
+def base_page():
+    """
+    Base endpoint to redirect to health check endpoint.
+    """
+    return RedirectResponse(url="/health")
+
+@app.get("/health")
+def health_check():
+    """
+    Endpoint to check the health of the service.
+    Returns a simple message indicating that the service is healthy.
+    """
+    return {
+        "status": "healthy",
+        "service": "Service Health Api"
+    }
+
+@app.get("/metadata")
+def metadata():
+    """
+    Endpoint to get metadata about the service.
+    Returns information about the service.
+    """
+    return {
+        "service": "Service Health Api",
+        "environment": "local",
+        "version": "0.0.1"
+    }
+
