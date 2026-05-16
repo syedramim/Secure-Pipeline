@@ -20,3 +20,22 @@ GET /metadata
 - SBOM generation
 - Dockerfile hardening
 - Pipeline permissions hardening
+
+## Run with Docker
+
+This project can be built and run as a Docker container.
+
+### Build the image
+```bash
+docker build -t <container_name> .
+
+### Run the Container
+```bash
+docker run -p 8000:8000 <container_name>
+
+### Verify it is working
+```bash
+http://localhost:8000/health 
+
+```bash
+curl http://localhost:8000/health

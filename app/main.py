@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
 app = FastAPI(
-    title="Service Health Api",
+    title="Service Health API",
     description="API for checking the health of the service.",
     version="0.0.1",
 )
