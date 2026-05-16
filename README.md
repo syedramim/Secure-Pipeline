@@ -6,6 +6,8 @@ This project is a hands-on DevSecOps portfolio project focused on securing the s
 
 Phase 1: Local FastAPI service
 
+Phase 2: Containerized FastAPI service
+
 ## Service Endpoints
 
 GET /health
@@ -48,3 +50,13 @@ curl http://localhost:8000/health
 ```
 curl http://localhost:8000/metadata
 ```
+
+## Containerization Notes
+
+The service is containerized using a Python slim base image.
+
+The container exposes port 8000 and runs the FastAPI service with Uvicorn.
+
+Uvicorn is configured with `--host 0.0.0.0` so the service is reachable from outside the container when Docker port mapping is used.
+
+The project uses `.dockerignore` to keep unnecessary local files out of the Docker build context.
