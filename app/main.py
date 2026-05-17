@@ -22,7 +22,7 @@ def health_check():
     """
     return {
         "status": "healthy",
-        "service": "Service Health Api"
+        "service": "Service Health API"
     }
 
 @app.get("/metadata")
@@ -32,7 +32,7 @@ def metadata():
     Returns information about the service.
     """
     return {
-        "service": "Service Health Api",
+        "service": "Service Health API",
         "environment": "local",
         "version": "0.0.1"
     }

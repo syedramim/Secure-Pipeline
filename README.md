@@ -60,3 +60,19 @@ The container exposes port 8000 and runs the FastAPI service with Uvicorn.
 Uvicorn is configured with `--host 0.0.0.0` so the service is reachable from outside the container when Docker port mapping is used.
 
 The project uses `.dockerignore` to keep unnecessary local files out of the Docker build context.
+
+
+## Run Tests
+
+This project includes small automated tests to validate the FastAPI service behavior.
+
+The tests currently verify:
+
+- The health endpoint responds successfully
+- The metadata endpoint responds successfully
+- The root endpoint redirects to the health endpoint
+
+Run the test suite from the project root:
+
+```bash
+pytest
