@@ -7,4 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Running Pipeline"
+      - uses: action/checkout@v4
       - run: ls -R
