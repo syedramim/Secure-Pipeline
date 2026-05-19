@@ -9,6 +9,17 @@ def assert_http_200(response):
     """
     assert response.status_code == 200
 
+def assert_is_health_page(response):
+    """
+    Asserts that /health page's
+    status is healthy,
+    service is Service Health API
+    """
+    data = response.json()
+
+    assert data['status'] == 'healthy'
+    assert data['service'] == 'Service Health API'
+
 def test_base_page():
     """
     Asserts that the base page of / redirects to /health and has 
@@ -16,7 +27,7 @@ def test_base_page():
     """
     response = client.get("/")
     assert_http_200(response)
-    test_health_check()
+    assert_is_health_page(response)
 
 
 def test_health_check():
@@ -26,11 +37,9 @@ def test_health_check():
     service is Service Health API
     """
     response = client.get("/health")
-    data = response.json()
-
     assert_http_200(response)
-    assert data['status'] == 'healthy'
-    assert data['service'] == 'Service Health API'
+    assert_is_health_page(response)
+
 
 def test_metadata():
     """
@@ -46,5 +55,13 @@ def test_metadata():
     assert data['service'] == 'Service Health API'
     assert data['environment'] == 'local'
     assert data['version'] == '0.0.1'
+
+def test_fake_page():
+    """
+    Asserts that /fake_page doesn't exist and provides 404 HTTP response
+    """
+
+    response = client.get("fake_page")
+    assert response.status_code == 404
 
 
