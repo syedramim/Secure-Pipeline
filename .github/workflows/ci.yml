@@ -14,8 +14,8 @@ jobs:
           python-version: "3.12"
       
       - name: Install Dependencies 
-      - run: pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run Validation Script
-      - run: scripts/validate.sh
+        run: scripts/validate.sh
       
