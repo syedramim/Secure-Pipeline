@@ -1,0 +1,11 @@
+name: Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  Build-Pipeline:
+    runs-on: python:3.12-slim
+    steps:
+      - run: echo "Running Pipeline"
+      - run: pip install -r requirements
+      - run: pytest
