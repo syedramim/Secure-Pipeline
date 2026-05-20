@@ -3,6 +3,4 @@ set -e
 
 pytest
 
-pip list --format=json
-
-pip-audit
+pip-audit -r requirements.txt
