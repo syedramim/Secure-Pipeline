@@ -3,4 +3,6 @@ set -e
 
 pytest
 
+pip list --format=json
+
 pip-audit
