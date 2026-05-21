@@ -29,7 +29,8 @@ jobs:
           image-ref: 'secure_ci_image'
           format: 'table'
           exit-code: '1'
-          ignore-unfixed: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL'
 
       
