@@ -30,7 +30,7 @@ jobs:
         with: 
           image: secure_ci_image:latest
           artifact-name: sbom_secure_ci_image.cyclonedx.json
-          output-file: ${{ runner.temp }}
+          output-file: $RUNNER_TEMP
           format: cyclonedx-json
       
       - name: Run Trivy
