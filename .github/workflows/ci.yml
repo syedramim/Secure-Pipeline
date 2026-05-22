@@ -45,10 +45,10 @@ jobs:
       
       - name: Upload Artifacts
         run: ls -R ${{ runner.temp }}
-        uses: actions/upload-artifact@v7
-        with:
-          path: sbom_secure_ci_image.cyclonedx.json
-          overwrite: true
+        # uses: actions/upload-artifact@v7
+        # with:
+        #   path: sbom_secure_ci_image.cyclonedx.json
+        #   overwrite: true
 
 
       
