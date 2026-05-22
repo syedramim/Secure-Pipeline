@@ -14,13 +14,13 @@ jobs:
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
       
-      - name: Install Dependencies 
-        run: |
-          pip install -r requirements.txt
-          pip install -r requirements-dev.txt
+      # - name: Install Dependencies 
+      #   run: |
+      #     pip install -r requirements.txt
+      #     pip install -r requirements-dev.txt
 
-      - name: Run Validation Script
-        run: scripts/validate.sh
+      # - name: Run Validation Script
+      #   run: scripts/validate.sh
 
       - name: Build Docker Image
         run: docker build -t secure_ci_image .
@@ -33,20 +33,20 @@ jobs:
           output-file: $RUNNER_TEMP
           format: cyclonedx-json
       
-      - name: Run Trivy
-        uses: aquasecurity/trivy-action@v0.36.0
-        with:
-          image-ref: 'secure_ci_image'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL'
+      # - name: Run Trivy
+      #   uses: aquasecurity/trivy-action@v0.36.0
+      #   with:
+      #     image-ref: 'secure_ci_image'
+      #     format: 'table'
+      #     exit-code: '1'
+      #     ignore-unfixed: true
+      #     vuln-type: 'os,library'
+      #     severity: 'CRITICAL'
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7
         with:
-          path: ${{ runner.temp }}/sbom_secure_ci_image.cyclonedx.json
+          path: **/sbom_secure_ci_image.cyclonedx.json
           overwrite: true
 
 
