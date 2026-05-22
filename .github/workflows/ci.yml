@@ -24,6 +24,13 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t secure_ci_image .
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with: 
+          image: secure_ci_image:latest
+          output-file: $RUNNER_TEMP
+          format: cyclonedx-json
       
       - name: Run Trivy
         uses: aquasecurity/trivy-action@v0.36.0
