@@ -17,7 +17,7 @@ jobs:
       - name: Rebug runner RUNNER_TEMP
         run: |
           echo $RUNNER_TEMP
-          echo $ {{ runner.temp }}
+          echo ${{ runner.temp }}
 
       # - name: Install Dependencies 
       #   run: |
