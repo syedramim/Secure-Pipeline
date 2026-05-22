@@ -45,8 +45,9 @@ jobs:
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7
-        path: $RUNNER_TEMP/sbom_secure_ci_image.cyclonedx.json
-        overwrite: true
+        with:
+          path: $RUNNER_TEMP/sbom_secure_ci_image.cyclonedx.json
+          overwrite: true
 
 
       
