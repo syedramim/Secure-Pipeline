@@ -13,11 +13,6 @@ jobs:
 
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
-      
-      - name: Rebug runner RUNNER_TEMP
-        run: |
-          echo $RUNNER_TEMP
-          echo ${{ runner.temp }}
 
       # - name: Install Dependencies 
       #   run: |
@@ -49,6 +44,7 @@ jobs:
       #     severity: 'CRITICAL'
       
       - name: Upload Artifacts
+        run: ls -R ${{ runner.temp }}
         uses: actions/upload-artifact@v7
         with:
           path: sbom_secure_ci_image.cyclonedx.json
