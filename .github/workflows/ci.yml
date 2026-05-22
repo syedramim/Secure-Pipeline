@@ -30,7 +30,7 @@ jobs:
         with: 
           image: secure_ci_image:latest
           artifact-name: sbom_secure_ci_image.cyclonedx.json
-          output-file: $RUNNER_TEMP
+          output-file: ${{ runner.temp }}/sbom_secure_ci_image.cyclonedx.json
           format: cyclonedx-json
       
       # - name: Run Trivy
@@ -44,11 +44,10 @@ jobs:
       #     severity: 'CRITICAL'
       
       - name: Upload Artifacts
-        run: ls -R ${{ runner.temp }}
-        # uses: actions/upload-artifact@v7
-        # with:
-        #   path: sbom_secure_ci_image.cyclonedx.json
-        #   overwrite: true
+        uses: actions/upload-artifact@v7
+        with:
+          path: sbom_secure_ci_image.cyclonedx.json
+          overwrite: true
 
 
       
