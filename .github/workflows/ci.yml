@@ -14,6 +14,11 @@ jobs:
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
       
+      - name: Rebug runner RUNNER_TEMP
+        run: |
+          echo $RUNNER_TEMP
+          echo $ {{ runner.temp }}
+
       # - name: Install Dependencies 
       #   run: |
       #     pip install -r requirements.txt
@@ -46,7 +51,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7
         with:
-          path: */sbom_secure_ci_image.cyclonedx.json
+          path: **/sbom_secure_ci_image.cyclonedx.json
           overwrite: true
 
 
