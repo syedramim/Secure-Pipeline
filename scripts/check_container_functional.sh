@@ -5,9 +5,9 @@ docker run -d -p 8000:8000 --name health_check secure_ci_image
 
 sleep 5s
 
-docker rm -f health_check
+STATUS=$(curl -s http://localhost:8000/health | jq -r '.status')
 
-STATUS=curl -s http://localhost:8000/health | jq -r '.status'
+docker rm -f health_check
 
 if [ $STATUS=='healthy' ]; then
     echo "Service Functional"
