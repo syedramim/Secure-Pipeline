@@ -21,7 +21,9 @@ jobs:
         run: scripts/validate.sh
 
       - name: Build Docker Image
-        run: docker build -t secure_ci_image .
+        run: |
+          docker build -t secure_ci_image .
+          scripts/check_nonroot.sh
 
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
