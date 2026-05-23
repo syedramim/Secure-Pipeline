@@ -9,7 +9,7 @@ STATUS=$(curl -s http://localhost:8000/health | jq -r '.status')
 
 docker rm -f health_check
 
-if [ "$STATUS" = "not healthy" ]; then
+if [ "$STATUS" = "healthy" ]; then
     echo "Service Functional"
 else
     echo "Service not working"
