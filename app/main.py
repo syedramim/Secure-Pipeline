@@ -21,7 +21,7 @@ def health_check():
     Returns a simple message indicating that the service is healthy.
     """
     return {
-        "status": "not healthy",
+        "status": "healthy",
         "service": "Service Health API"
     }
 
