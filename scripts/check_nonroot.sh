@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo -e "\nChecking if USER is nonroot..."
+echo "Checking if USER is nonroot..."
 
 docker run -d --name nonroot_check secure_ci_image
 

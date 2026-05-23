@@ -13,7 +13,7 @@ COPY /app /secure-pipeline
 
 RUN chown -R sec_user:sec_group /secure-pipeline
 
-# USER sec_user
+USER sec_user
 
 EXPOSE 8000
 
