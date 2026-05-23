@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Checking if USER is nonroot..."
+echo -e "\nChecking if USER is nonroot..."
 
 docker run -d --name nonroot_check secure_ci_image
 
@@ -13,5 +13,5 @@ if [ $USERID -eq 0 ]; then
     echo "ERROR: Container is running as root. Failing build."
     exit 1
 else
-    echo "Container is running as: ${USERID}(nonroot)\nBuild ok."
+    echo -e "Container is running as: ${USERID}(nonroot).\nBuild ok."
 fi
