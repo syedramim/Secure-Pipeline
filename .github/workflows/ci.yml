@@ -45,11 +45,17 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL'
       
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          path: ${{ runner.temp }}/sbom_secure_ci_image.cyclonedx.json
-          overwrite: true
+      - name: Security Gate Summary
+        run: |
+          echo "Security Gate Summary"
+          echo "- Unit/API tests passed"
+          echo "- Dependency audit passed"
+          echo "- Secret scan passed"
+          echo "- Docker image build passed"
+          echo "- Non-root container validation passed"
+          echo "- Runtime health check passed"
+          echo "- SBOM generated"
+          echo "- Critical vulnerability scan passed"
 
 
       
