@@ -1,78 +1,72 @@
-# Secure-Pipeline
+# Secure CI/CD Pipeline
 
-This project is a hands-on DevSecOps portfolio project focused on securing the software delivery lifecycle for a small containerized internal service.
+A small FastAPI app with a GitHub Actions pipeline focused on basic DevSecOps controls: testing, dependency scanning, secret scanning, container scanning, SBOM generation, and container hardening.
 
-## Current Status
+## What This Shows
 
-Phase 1: Local FastAPI service
+This project demonstrates how to secure a simple application delivery pipeline without overcomplicating it. The pipeline checks that the app works, scans for common security issues, builds a Docker image, validates the container does not run as root, and limits GitHub Actions permissions.
 
-Phase 2: Containerized FastAPI service
+## Security Controls
 
-## Service Endpoints
+| Area | Tool / Control |
+|---|---|
+| Unit testing | pytest |
+| Python dependency scanning | pip-audit |
+| Secret scanning | Gitleaks |
+| Container vulnerability scanning | Trivy |
+| SBOM generation | Syft |
+| Container hardening | non-root container user |
+| CI permissions | read-only `contents` permission |
 
-GET /health
+## Local Usage
 
-GET /metadata
+Create and activate a virtual environment:
 
-## Planned Security Work
-
-- CI/CD security gates
-- Secret scanning
-- Dependency scanning
-- Container image scanning
-- SBOM generation
-- Dockerfile hardening
-- Pipeline permissions hardening
-
-## Run with Docker
-
-This project can be built and run as a Docker container.
-
-### Build the image
-```
-docker build -t <container_name> .
+```bash
+python -m venv venv
+source venv/bin/activate
 ```
 
-### Run the Container
-```
-docker run -p 8000:8000 <container_name>
-```
+Install dependencies:
 
-### Verify it is working
-```
-http://localhost:8000/health
-``` 
-
-```
-curl http://localhost:8000/health
+```bash
+pip install -r requirements.txt
 ```
 
+Run the app:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
-curl http://localhost:8000/metadata
-```
 
-## Containerization Notes
-
-The service is containerized using a Python slim base image.
-
-The container exposes port 8000 and runs the FastAPI service with Uvicorn.
-
-Uvicorn is configured with `--host 0.0.0.0` so the service is reachable from outside the container when Docker port mapping is used.
-
-The project uses `.dockerignore` to keep unnecessary local files out of the Docker build context.
-
-
-## Run Tests
-
-This project includes small automated tests to validate the FastAPI service behavior.
-
-The tests currently verify:
-
-- The health endpoint responds successfully
-- The metadata endpoint responds successfully
-- The root endpoint redirects to the health endpoint
-
-Run the test suite from the project root:
+Run tests:
 
 ```bash
 pytest
+```
+
+## Docker Usage
+
+Build the image:
+
+```bash
+docker build -t secure-pipeline .
+```
+
+Run the container:
+
+```bash
+docker run -p 8000:8000 secure-pipeline
+```
+
+Check the health endpoint:
+
+```bash
+curl http://localhost:8000/health
+```
+
+## Why This Project Matters
+
+The goal of this project was not to build a complex app. The goal was to build a simple app and wrap it in a security-focused delivery pipeline.
+
+It shows practical experience with CI/CD security, container security, software supply chain basics, and security automation.
