@@ -2,6 +2,9 @@ name: Pipeline
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   Build-Pipeline:
     runs-on: ubuntu-latest
